@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tea Station</title>
+
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#020617;
+      overflow-x:hidden;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    .title-font{
+      font-family:'Great Vibes',cursive;
+    }
+
+    .glass{
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-bg{
+  background:
+  linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.75)),
+  url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1600&auto=format&fit=crop');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  @media(max-width:768px){
+
+  .hero-bg{
+    background-attachment: scroll;
+  }
+
+}
+}
+
+    .floating{
+      animation:floating 4s ease-in-out infinite;
+    }
+
+    @keyframes floating{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-18px);
+      }
+    }
+
+    .fade-up{
+      animation:fadeUp 1.2s ease;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(60px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0px);
+      }
+    }
+
+    .card-hover{
+      transition:.5s;
+    }
+
+    .card-hover:hover{
+      transform:translateY(-15px) scale(1.03);
+      box-shadow:0 0 40px rgba(34,197,94,.35);
+    }
+
+    .input{
+      width:100%;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      padding:18px 22px;
+      border-radius:18px;
+      outline:none;
+      color:white;
+      transition:.4s;
+    }
+
+    .input:focus{
+      border-color:#22c55e;
+      box-shadow:0 0 20px rgba(34,197,94,.3);
+    }
+
+
+
+#menuBtn{
+  animation:pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow{
+
+  0%{
+    transform:scale(1);
+    box-shadow:0 0 0 rgba(34,197,94,.7);
+  }
+
+  50%{
+    transform:scale(1.12);
+    box-shadow:0 0 30px rgba(34,197,94,.8);
+  }
+
+  100%{
+    transform:scale(1);
+    box-shadow:0 0 0 rgba(34,197,94,.7);
+  }
+
+}
+
+/* side slide */
+
+#sidebar{
+  transition:
+  transform .6s cubic-bezier(0.68,-0.55,0.27,1.55);
+}
+
+/* icon */
+
+#menuBtn i{
+  transition:.5s;
+}
+
+#menuBtn:hover i{
+  transform:rotate(180deg);
+}
+
+/*TEXT ANIMATION */
+
+.hero-title{
+  animation:zoomFade 2s ease forwards;
+}
+
+.hero-subtitle{
+  animation:slideTop 2s ease forwards;
+}
+
+.hero-btns{
+  animation:slideBottom 2.5s ease forwards;
+}
+
+
+  </style>
+
+</head>
+
+<body class="text-white">
+
+<!--SIDEBAR -->
+
+<aside id="sidebar"
+class="fixed top-0 left-0 h-screen w-80 bg-slate-950/95 backdrop-blur-2xl border-r border-white/10 z-50 transform -translate-x-full transition-transform duration-500 overflow-y-auto">
+
+  <!-- TOP -->
+  <div class="flex items-center justify-between px-8 py-7 border-b border-white/10">
+
+    <div>
+
+      <h1 class="text-3xl font-extrabold">
+        Tea<span class="text-green-400">Station</span>
+      </h1>
+
+      <p class="text-gray-400 mt-1">
+        Premium Tea Experience
+      </p>
+
+    </div>
+
+    <!-- CLOSE BUTTON -->
+    <button id="closeBtn"
+    class="w-12 h-12 rounded-full bg-white/10 hover:bg-red-500 duration-300 flex items-center justify-center text-xl">
+
+      <i class="fas fa-xmark"></i>
+
+    </button>
+
+  </div>
+
+  <!-- MENU -->
+  <ul class="mt-10 px-6 space-y-5">
+
+    <li>
+      <a href="#home"
+      class="navLink flex items-center gap-5 bg-white/5 hover:bg-green-500 px-6 py-4 rounded-2xl duration-500 hover:translate-x-3">
+        <i class="fas fa-house text-green-400"></i>
+        <span class="font-semibold text-lg">Home</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#skills"
+      class="navLink flex items-center gap-5 bg-white/5 hover:bg-green-500 px-6 py-4 rounded-2xl duration-500 hover:translate-x-3">
+        <i class="fas fa-mug-hot text-green-400"></i>
+        <span class="font-semibold text-lg">Skills</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#about"
+      class="navLink flex items-center gap-5 bg-white/5 hover:bg-green-500 px-6 py-4 rounded-2xl duration-500 hover:translate-x-3">
+        <i class="fas fa-circle-info text-green-400"></i>
+        <span class="font-semibold text-lg">About</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#services"
+      class="navLink flex items-center gap-5 bg-white/5 hover:bg-green-500 px-6 py-4 rounded-2xl duration-500 hover:translate-x-3">
+        <i class="fas fa-bell-concierge text-green-400"></i>
+        <span class="font-semibold text-lg">Services</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#products"
+      class="navLink flex items-center gap-5 bg-white/5 hover:bg-green-500 px-6 py-4 rounded-2xl duration-500 hover:translate-x-3">
+        <i class="fas fa-leaf text-green-400"></i>
+        <span class="font-semibold text-lg">Products</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#contact"
+      class="navLink flex items-center gap-5 bg-white/5 hover:bg-green-500 px-6 py-4 rounded-2xl duration-500 hover:translate-x-3">
+        <i class="fas fa-envelope text-green-400"></i>
+        <span class="font-semibold text-lg">Contact</span>
+      </a>
+    </li>
+
+  </ul>
+
+</aside>
+
+<!-- MENU BUTTON -->
+
+<button id="menuBtn"
+class="fixed top-6 left-6 z-40 w-16 h-16 rounded-full bg-green-500 text-white text-2xl shadow-2xl hover:scale-110 duration-500">
+
+  <i class="fas fa-bars"></i>
+
+</button>
+
+<!-- HERO -->
+
+<section id="home"
+class="hero-bg min-h-screen flex items-center justify-center text-center px-6 relative">
+
+  <div class="relative z-10 max-w-5xl fade-up">
+
+    <p class="title-font text-yellow-400 text-5xl md:text-7xl mb-6 floating">
+      Over One Hundred Flavors Of
+    </p>
+
+    <h1 class="text-5xl md:text-8xl font-extrabold uppercase tracking-[8px] leading-tight mb-10">
+      specially crafted tea
+    </h1>
+
+    <div class="flex flex-wrap justify-center gap-6">
+
+      <a href="#products"
+      class="bg-green-500 hover:bg-green-600 px-10 py-5 rounded-full font-bold tracking-widest hover:scale-110 duration-500">
+        EXPLORE
+      </a>
+
+      <a href="#about"
+      class="border-2 border-white hover:bg-white hover:text-black px-10 py-5 rounded-full font-bold tracking-widest hover:scale-110 duration-500">
+        LEARN MORE
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills"
+class="py-28 bg-slate-900">
+
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+    <div class="glass rounded-3xl p-10 text-center card-hover">
+
+      <div class="w-24 h-24 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-8">
+        <i class="fas fa-mug-hot text-4xl text-green-400"></i>
+      </div>
+
+      <h3 class="text-3xl font-bold mb-5">
+        Premium Quality
+      </h3>
+
+      <p class="text-gray-300 leading-8">
+        Crafted using fresh and organic tea ingredients.
+      </p>
+
+    </div>
+
+    <div class="glass rounded-3xl p-10 text-center card-hover">
+
+      <div class="w-24 h-24 rounded-full bg-yellow-500/20 flex items-center justify-center mx-auto mb-8">
+        <i class="fas fa-heart text-4xl text-yellow-400"></i>
+      </div>
+
+      <h3 class="text-3xl font-bold mb-5">
+        Relaxation
+      </h3>
+
+      <p class="text-gray-300 leading-8">
+        Enjoy peaceful moments with every sip of tea.
+      </p>
+
+    </div>
+
+    <div class="glass rounded-3xl p-10 text-center card-hover">
+
+      <div class="w-24 h-24 rounded-full bg-pink-500/20 flex items-center justify-center mx-auto mb-8">
+        <i class="fas fa-bolt text-4xl text-pink-400"></i>
+      </div>
+
+      <h3 class="text-3xl font-bold mb-5">
+        Energy Boost
+      </h3>
+
+      <p class="text-gray-300 leading-8">
+        Refresh your body and mind naturally every day.
+      </p>
+
+    </div>
+
+    <div class="glass rounded-3xl p-10 text-center card-hover">
+
+      <div class="w-24 h-24 rounded-full bg-cyan-500/20 flex items-center justify-center mx-auto mb-8">
+        <i class="fas fa-leaf text-4xl text-cyan-400"></i>
+      </div>
+
+      <h3 class="text-3xl font-bold mb-5">
+        Organic Recipe
+      </h3>
+
+      <p class="text-gray-300 leading-8">
+        Traditional tea recipe blended with modern taste.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about"
+class="py-28 bg-slate-950 overflow-hidden">
+
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+
+    <!-- IMAGE -->
+    <div class="relative group">
+
+      <div class="absolute -top-8 -left-8 w-full h-full border-[6px] border-green-500 rounded-[50px]"></div>
+
+      <img
+      src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
+      alt="tea image"
+      class="relative rounded-[50px] w-full h-[520px] object-cover shadow-2xl duration-700 group-hover:scale-105">
+
+    </div>
+
+    <!-- CONTENT -->
+    <div>
+
+      <p class="title-font text-yellow-400 text-5xl md:text-7xl mb-5">
+        About Our
+      </p>
+
+      <h2 class="text-5xl md:text-7xl font-extrabold mb-10 leading-tight">
+        Tea Station
+      </h2>
+
+      <p class="text-gray-300 text-lg leading-10 mb-6">
+        Discover handcrafted tea created from premium organic ingredients,
+        blended carefully to deliver rich aroma and peaceful relaxing experience.
+      </p>
+
+      <!-- HIDDEN TEXT -->
+      <div id="moreText"
+      class="max-h-0 overflow-hidden transition-all duration-700 ease-in-out">
+
+        <p class="text-gray-300 text-lg leading-10 mb-6">
+          At Tea Station, we combine traditional tea-making methods with modern flavors to create refreshing beverages loved worldwide.
+        </p>
+
+        <p class="text-gray-300 text-lg leading-10 mb-6">
+          Every cup is prepared with freshness, passion, and premium quality ingredients to energize your day.
+        </p>
+
+      </div>
+
+      <!-- BUTTON -->
+      <a href="products.html"
+class="bg-green-500 hover:bg-green-600 px-12 py-5 rounded-full text-lg font-bold tracking-[3px] shadow-2xl hover:scale-110 duration-500 inline-block">
+
+  LEARN MORE
+
+</a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section id="services"
+class="py-28 bg-slate-900">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- SECTION TITLE -->
+
+    <div class="text-center mb-20">
+
+      <p class="title-font text-yellow-400 text-6xl mb-4">
+        Our Special
+      </p>
+
+      <h2 class="text-5xl font-extrabold">
+        Tea Services
+      </h2>
+
+    </div>
+
+    <!-- SERVICE CARDS -->
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <!-- CARD 1 -->
+
+      <div class="glass rounded-[35px] p-10 text-center card-hover">
+
+        <div class="w-24 h-24 mx-auto rounded-full bg-green-500/20 flex items-center justify-center mb-8">
+
+          <i class="fas fa-mug-hot text-4xl text-green-400"></i>
+
+        </div>
+
+        <h3 class="text-3xl font-bold mb-5">
+          Premium Tea
+        </h3>
+
+        <p class="text-gray-300 leading-9 mb-8">
+          Handcrafted tea made with fresh organic ingredients.
+        </p>
+
+        <!-- BUTTON -->
+
+        <a href="products.html"
+        class="inline-block bg-green-500 hover:bg-green-600 px-8 py-4 rounded-full font-bold tracking-[2px] shadow-xl hover:scale-110 duration-300">
+
+          READ MORE
+
+        </a>
+
+      </div>
+
+      <!-- CARD 2 -->
+
+      <div class="glass rounded-[35px] p-10 text-center card-hover">
+
+        <div class="w-24 h-24 mx-auto rounded-full bg-yellow-500/20 flex items-center justify-center mb-8">
+
+          <i class="fas fa-truck-fast text-4xl text-yellow-400"></i>
+
+        </div>
+
+        <h3 class="text-3xl font-bold mb-5">
+          Fast Delivery
+        </h3>
+
+        <p class="text-gray-300 leading-9 mb-8">
+          Quick and fresh delivery to your doorstep.
+        </p>
+
+        <!-- BUTTON -->
+
+        <a href="products.html"
+        class="inline-block bg-yellow-500 hover:bg-yellow-600 px-8 py-4 rounded-full font-bold tracking-[2px] shadow-xl hover:scale-110 duration-300">
+
+          READ MORE
+
+        </a>
+
+      </div>
+
+      <!-- CARD 3 -->
+
+      <div class="glass rounded-[35px] p-10 text-center card-hover">
+
+        <div class="w-24 h-24 mx-auto rounded-full bg-pink-500/20 flex items-center justify-center mb-8">
+
+          <i class="fas fa-heart text-4xl text-pink-400"></i>
+
+        </div>
+
+        <h3 class="text-3xl font-bold mb-5">
+          Healthy Lifestyle
+        </h3>
+
+        <p class="text-gray-300 leading-9 mb-8">
+          Natural tea blends designed for healthy living.
+        </p>
+
+        <!-- BUTTON -->
+
+        <a href="products.html"
+        class="inline-block bg-pink-500 hover:bg-pink-600 px-8 py-4 rounded-full font-bold tracking-[2px] shadow-xl hover:scale-110 duration-300">
+
+          READ MORE
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!--  PRODUCTS -->
+
+<section id="products"
+class="py-28 bg-slate-950">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-20">
+
+      <p class="title-font text-yellow-400 text-6xl mb-4">
+        Check Out
+      </p>
+
+      <h2 class="text-5xl font-extrabold">
+        Our Products
+      </h2>
+
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <div class="glass rounded-[40px] overflow-hidden card-hover">
+
+        <img
+        src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=1000&auto=format&fit=crop"
+        class="h-80 w-full object-cover"
+        alt="">
+
+        <div class="p-8">
+
+          <h3 class="text-3xl font-bold mb-4">
+            Ginger Peach Tea
+          </h3>
+
+          <p class="text-green-400 text-2xl font-bold mb-4">
+            $6.99
+          </p>
+
+          <p class="text-gray-300 leading-8">
+            Fresh ginger blended with sweet peach flavor.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="glass rounded-[40px] overflow-hidden card-hover">
+
+        <img
+        src="https://images.unsplash.com/photo-1523920290228-4f321a939b4c?q=80&w=1000&auto=format&fit=crop"
+        class="h-80 w-full object-cover"
+        alt="">
+
+        <div class="p-8">
+
+          <h3 class="text-3xl font-bold mb-4">
+            Fruit Sangria
+          </h3>
+
+          <p class="text-green-400 text-2xl font-bold mb-4">
+            $8.99
+          </p>
+
+          <p class="text-gray-300 leading-8">
+            Colorful fruit infused tea with refreshing taste.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="glass rounded-[40px] overflow-hidden card-hover">
+
+        <img
+        src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=1000&auto=format&fit=crop"
+        class="h-80 w-full object-cover"
+        alt="">
+
+        <div class="p-8">
+
+          <h3 class="text-3xl font-bold mb-4">
+            White Tea
+          </h3>
+
+          <p class="text-green-400 text-2xl font-bold mb-4">
+            $9.99
+          </p>
+
+          <p class="text-gray-300 leading-8">
+            Smooth premium white tea made with organic leaves.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact"
+class="py-28 bg-slate-900">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-20">
+
+      <p class="title-font text-yellow-400 text-6xl mb-4">
+        Get In Touch
+      </p>
+
+      <h2 class="text-5xl font-extrabold">
+        Contact Us
+      </h2>
+
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- ADDRESS -->
+      <div class="glass rounded-[40px] p-10">
+
+        <h3 class="text-4xl font-bold mb-10">
+          Let's Talk About Tea
+        </h3>
+
+        <div class="space-y-8">
+
+          <div class="flex gap-5 items-start">
+
+            <div class="w-16 h-16 rounded-2xl bg-green-500/20 flex items-center justify-center text-2xl text-green-400">
+              <i class="fas fa-location-dot"></i>
+            </div>
+
+            <div>
+
+              <h4 class="text-2xl font-bold mb-2">
+                Address
+              </h4>
+
+              <p class="text-gray-300 leading-8">
+                Tea Station Cafe,<br>
+                Anna Nagar,<br>
+                Chennai, Tamil Nadu
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FORM -->
+      <form class="glass rounded-[40px] p-10 space-y-8">
+
+        <input type="text"
+        placeholder="Full Name"
+        class="input">
+
+        <input type="email"
+        placeholder="Email Address"
+        class="input">
+
+        <textarea rows="6"
+        placeholder="Write your message..."
+        class="input resize-none"></textarea>
+
+        <button
+        class="w-full bg-green-500 hover:bg-green-600 py-5 rounded-2xl text-lg font-bold tracking-wider hover:scale-105 duration-300">
+
+          SEND MESSAGE
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="bg-black py-16 text-center border-t border-white/10">
+
+  <div class="flex justify-center gap-8 text-3xl mb-10">
+
+    <a href="#"
+    class="w-16 h-16 rounded-full glass flex items-center justify-center hover:bg-green-500 hover:-translate-y-3 duration-500">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="#"
+    class="w-16 h-16 rounded-full glass flex items-center justify-center hover:bg-sky-500 hover:-translate-y-3 duration-500">
+      <i class="fab fa-twitter"></i>
+    </a>
+
+    <a href="#"
+    class="w-16 h-16 rounded-full glass flex items-center justify-center hover:bg-pink-500 hover:-translate-y-3 duration-500">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+  </div>
+
+  <p class="text-gray-400 text-lg tracking-wider leading-8 px-6">
+     2026 <span class="text-green-400 font-bold">Tea Station</span>.
+    at Chennai
+  </p>
+
+</footer>
+
+<!-- Js -->
+
+<script>
+
+ 
+  const sidebar = document.getElementById("sidebar");
+  const menuBtn = document.getElementById("menuBtn");
+  const closeBtn = document.getElementById("closeBtn");
+  const navLinks = document.querySelectorAll(".navLink");
+
+  menuBtn.addEventListener("click", () => {
+    sidebar.classList.remove("-translate-x-full");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    sidebar.classList.add("-translate-x-full");
+  });
+
+  navLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+      sidebar.classList.add("-translate-x-full");
+
+    });
+
+  });
+
+  const learnBtn = document.getElementById("learnBtn");
+  const moreText = document.getElementById("moreText");
+
+  let expanded = false;
+
+  learnBtn.addEventListener("click", () => {
+
+    expanded = !expanded;
+
+    if(expanded){
+
+      moreText.classList.remove("max-h-0");
+      moreText.classList.add("max-h-[500px]");
+
+      learnBtn.innerText = "SHOW LESS";
+
+    }else{
+
+      moreText.classList.remove("max-h-[500px]");
+      moreText.classList.add("max-h-0");
+
+      learnBtn.innerText = "LEARN MORE";
+
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
